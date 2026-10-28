@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Herbal Mosquito Repellent | Chemical Prototyping 2026-27</title>
+<meta name="description" content="A chemistry project: preparing a herbal mosquito repellent spray, with an interactive process flowchart, lab simulator and animated explainer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#principle">Skip to content</a>
+
+<!-- Scroll progress test tube: fills with each ingredient colour as you read -->
+<aside class="tube" aria-hidden="true">
+  <div class="tube-glass">
+    <div class="tube-fill" id="tubeFill"></div>
+  </div>
+</aside>
+
+<header class="topbar" id="topbar">
+  <a class="brand" href="#top" aria-label="Back to top">
+    <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path d="M11 3h10M13 3v9L6.5 24.5A3 3 0 0 0 9.2 29h13.6a3 3 0 0 0 2.7-4.5L19 12V3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21h14l2.2 3.6A2 2 0 0 1 23.5 27h-15a2 2 0 0 1-1.7-2.9z" fill="currentColor" opacity=".9"/></svg>
+    <span>Repellent Lab</span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+  <nav id="siteNav" class="nav" aria-label="Sections">
+    <a href="#principle">Principle</a>
+    <a href="#materials">Materials</a>
+    <a href="#process">Process</a>
+    <a href="#setup">Setup and safety</a>
+    <a href="#explainer">Explainer</a>
+    <a href="#footage">Footage</a>
+    <a href="#team">Team</a>
+  </nav>
+</header>
+
+<!-- 1. HERO: group photo is the page background (professor's requirement) -->
+<section class="hero" id="top">
+  <div class="hero-copy">
+    <h1>Herbal mosquito repellent</h1>
+    <p class="hero-sub">A chemistry project, extracted, refined and made by hand in our lab.</p>
+  </div>
+  <div class="hero-foot">
+    <p class="hero-meta">Chemical Prototyping &ndash; Academic Year 2026&ndash;27</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#explainer">Watch how it's made</a>
+      <a class="btn btn-ghost" href="#process">Try the lab</a>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- AIM + PRINCIPLE -->
+<section class="section" id="principle">
+  <div class="wrap two">
+    <div class="prose">
+      <h2>Why oil and water need a go-between</h2>
+      <p class="lead"><strong>Aim.</strong> To prepare a herbal mosquito repellent spray from citronella or lemongrass essential oil.</p>
+      <p><strong>Principle.</strong> Essential oil doesn't dissolve in water, so ethanol is used as the solvent that carries the oil into the water. Glycerin acts as a humectant and fixative, helping the scent last a little longer on skin. Distilled water makes up the bulk of the volume.</p>
+      <p>Try it on the right. Shake plain oil and water and they split again within seconds. Dissolve the oil in ethanol first, add water, and the oil stays dispersed as a fine haze.</p>
+    </div>
+    <figure class="demo">
+      <canvas id="demoCanvas" width="560" height="380" role="img" aria-label="Animated jar showing oil and water separating, and staying mixed when ethanol is used"></canvas>
+      <div class="seg" id="demoBtns" role="group" aria-label="Demonstration mode">
+        <button type="button" data-mode="plain" aria-pressed="true">Oil + water</button>
+        <button type="button" data-mode="ethanol" aria-pressed="false">Oil in ethanol + water</button>
+        <button type="button" class="seg-action" id="demoShake">Shake it</button>
+      </div>
+      <figcaption id="demoCap">Oil is non-polar and water is polar, so the oil rises and forms its own layer.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- MATERIALS AND CHEMICALS USED -->
+<section class="section tint" id="materials">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Materials and chemicals used</h2>
+      <p>Every batch is about 50 mL. Hover a coloured band to see which ingredient it is, or click it to jump to its card.</p>
+    </div>
+
+    <div class="qbar-wrap">
+      <div class="qbar" id="qbar" role="list" aria-label="Composition of a 50 mL batch">
+        <button role="listitem" class="q q-ethanol" data-ing="ethanol" style="flex:20" aria-label="Ethanol, 20 mL"><span>Ethanol<b>20 mL</b></span></button>
+        <button role="listitem" class="q q-oil" data-ing="castor" style="flex:2" aria-label="Oil, 2 mL"><span><b>2</b></span></button>
+        <button role="listitem" class="q q-glycerin" data-ing="glycerin" style="flex:2.5" aria-label="Glycerin, 2 to 3 mL"><span><b>2&ndash;3</b></span></button>
+        <button role="listitem" class="q q-water" data-ing="water" style="flex:25" aria-label="Distilled water, 25 mL"><span>Distilled water<b>25 mL</b></span></button>
+      </div>
+      <p class="qnote" id="qnote">Total: about 50 mL (20 + 2 + 2.5 + 25 mL).</p>
+    </div>
+
+    <!-- Featured: castor oil, what we actually used -->
+    <article class="castor" id="ing-castor" data-ing-card="castor">
+      <div class="hs" data-hs>
+        <div class="hs-stage">
+          <img src="assets/img/castor-bench.jpg" alt="Lab bench with a 5 litre Castor Oil LR container, a bottle of absolute ethanol, a blue-capped solvent bottle and a gas burner" loading="lazy">
+          <button class="hs-pin" style="--x:57%;--y:36%" data-title="Castor Oil LR, extra pure" data-text="The 5 L container our lab supplied. Label values: viscosity at 20 °C of 950 to 1050 mPa·s, saponification value min. 160, iodine value 82 to 88, acid value below 1.0%. This is the oil phase of our batch." aria-label="Castor oil container">+</button>
+          <button class="hs-pin" style="--x:25%;--y:49%" data-title="Ethanol, absolute" data-text="The solvent. Absolute ethanol sits in the white bottle. It dissolves the oil first, and then mixes with the water." aria-label="Ethanol bottle">+</button>
+          <button class="hs-pin" style="--x:37%;--y:64%" data-title="Third bottle: a lab solvent" data-text="Its spec label (boiling range about 55 to 56 °C, density about 0.79 g/mL) looks like a cleaning solvent such as acetone. It is not part of the formula." aria-label="Blue-capped bottle">+</button>
+          <button class="hs-pin" style="--x:71%;--y:80%" data-title="Gas burner" data-text="Ethanol vapour is flammable, so this burner stays switched off and away from the open bottles while we work." aria-label="Gas burner">+</button>
+        </div>
+        <div class="hs-panel" aria-live="polite">Tap a pin on the photo to see what each item on our bench is.</div>
+      </div>
+      <div class="castor-copy">
+        <span class="chip chip-oil">Oil phase &middot; 2 mL</span>
+        <h3>Why we used castor oil</h3>
+        <p class="lead">It was the only oil available in our lab, so it took the oil-phase role in our batch. It turned out to be a sensible stand-in for demonstrating the process:</p>
+        <ul class="reasons">
+          <li><b>It dissolves in ethanol.</b> Most fatty oils don't. Castor oil's main fatty acid, ricinoleic acid, carries a hydroxyl (&ndash;OH) group, which lets it mix with alcohol.</li>
+          <li><b>It's thick and slow to evaporate,</b> so the film it leaves on skin lasts longer than a thin oil.</li>
+          <li><b>It's gentle on skin</b> and has little smell, so the scent is easy to judge.</li>
+        </ul>
+        <p class="caveat"><b>Honest limit:</b> castor oil is not a recognised mosquito repellent. Our prototype shows the formulation method. For real protection, replace it with citronella or lemongrass oil (or add one alongside it).</p>
+        <div class="stock" data-stock>
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ricinus_communis_008.JPG?width=520" alt="Castor oil plant, Ricinus communis" loading="lazy" onerror="this.closest('[data-stock]').classList.add('missing')">
+          <svg class="art" viewBox="0 0 240 160" aria-hidden="true"><rect width="240" height="160" fill="#3b2a12"/><g fill="#b8742a"><ellipse cx="70" cy="80" rx="22" ry="30" transform="rotate(-25 70 80)"/><ellipse cx="120" cy="86" rx="22" ry="30" transform="rotate(10 120 86)"/><ellipse cx="168" cy="76" rx="22" ry="30" transform="rotate(30 168 76)"/></g><g fill="none" stroke="#f1d9a8" stroke-width="2" opacity=".7"><path d="M60 62q8 10 4 30M112 64q10 12 4 34M160 54q10 10 6 30"/></g></svg>
+          <figcaption>Castor plant (Ricinus communis), the source of the oil. Photo: Wikimedia Commons.</figcaption>
+        </div>
+      </div>
+    </article>
+
+    <!-- Other ingredients -->
+    <div class="ing-grid">
+
+      <article class="ing" id="ing-citronella" data-ing-card="citronella">
+        <div class="ing-media" data-stock>
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lemongrass_(Cymbopogon_citratus).jpg?width=640" alt="Lemongrass plant, Cymbopogon citratus" loading="lazy" onerror="this.closest('[data-stock]').classList.add('missing')">
+          <svg class="art" viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#e7efcf"/><g fill="none" stroke="#6f9a1f" stroke-width="7" stroke-linecap="round"><path d="M110 200C112 140 98 90 70 40"/><path d="M130 200C134 130 140 80 170 30"/><path d="M150 200C158 150 190 110 250 80"/><path d="M95 200C80 150 40 120 14 100"/><path d="M170 200C176 140 220 120 290 120"/></g></svg>
+          <figcaption>Lemongrass. Photo: Wikimedia Commons.</figcaption>
+        </div>
+        <div class="ing-body">
+          <span class="chip chip-citr">Reference active &middot; 2 mL</span>
+          <h3>Citronella or lemongrass oil</h3>
+          <p>The oil the original formula calls for. Citronella (Cymbopogon nardus or winterianus) is rich in citronellal and geraniol; lemongrass (Cymbopogon citratus) in citral. These scents mask the cues mosquitoes use to find skin, but they evaporate quickly, which is why a fixative is added.</p>
+          <details><summary>Why it's in the formula</summary><p>It's the active repellent. Everything else in the bottle exists to carry it, spread it and keep it on the skin.</p></details>
+        </div>
+      </article>
+
+      <article class="ing" id="ing-ethanol" data-ing-card="ethanol">
+        <div class="ing-media">
+          <svg class="art on" viewBox="0 0 320 200" role="img" aria-label="Illustration of an ethanol bottle and the skeletal structure of ethanol"><rect width="320" height="200" fill="#e4ecfb"/><g><rect x="46" y="52" width="70" height="110" rx="10" fill="#fff" stroke="#5b8def" stroke-width="3"/><rect x="62" y="34" width="38" height="20" rx="5" fill="#5b8def"/><rect x="50" y="98" width="62" height="60" rx="7" fill="#5b8def" opacity=".35"/><rect x="58" y="76" width="46" height="16" rx="3" fill="none" stroke="#5b8def" stroke-width="2"/></g><g stroke="#1f3f87" stroke-width="4" stroke-linecap="round" fill="none"><path d="M170 130L205 108L240 130"/><path d="M240 130L240 130"/></g><text x="246" y="140" font-family="JetBrains Mono, monospace" font-size="22" font-weight="600" fill="#1f3f87">OH</text><text x="150" y="176" font-family="JetBrains Mono, monospace" font-size="14" fill="#1f3f87">C&#8322;H&#8325;OH</text></svg>
+          <figcaption>Illustration. Skeletal structure of ethanol.</figcaption>
+        </div>
+        <div class="ing-body">
+          <span class="chip chip-eth">Solvent &middot; 20 mL (70&ndash;95%)</span>
+          <h3>Ethanol</h3>
+          <p>A molecule with two personalities: a polar &ndash;OH end that mixes with water and a non-polar ethyl end that mixes with oil. That's what lets it bridge the two. It also evaporates fast, so the spray dries on skin.</p>
+          <details><summary>Why not methanol?</summary><p>Methanol is toxic and must not go into anything sprayed on skin. Use ethanol only. Ethanol is also flammable, so keep it away from flames.</p></details>
+        </div>
+      </article>
+
+      <article class="ing" id="ing-glycerin" data-ing-card="glycerin">
+        <div class="ing-media">
+          <svg class="art on" viewBox="0 0 320 200" role="img" aria-label="Illustration of a glycerin drip and the skeletal structure of glycerol"><rect width="320" height="200" fill="#f8ecd3"/><path d="M80 40C80 40 52 84 52 108a28 28 0 0 0 56 0C108 84 80 40 80 40z" fill="#e3a857"/><path d="M68 108a12 12 0 0 0 12 12" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/><g stroke="#7a4d10" stroke-width="4" stroke-linecap="round" fill="none"><path d="M160 120L195 100L230 120"/><path d="M160 120V146"/><path d="M195 100V72"/><path d="M230 120V146"/></g><g font-family="JetBrains Mono, monospace" font-size="20" font-weight="600" fill="#7a4d10"><text x="146" y="168">OH</text><text x="180" y="62">OH</text><text x="216" y="168">OH</text></g></svg>
+          <figcaption>Illustration. Skeletal structure of glycerol.</figcaption>
+        </div>
+        <div class="ing-body">
+          <span class="chip chip-gly">Humectant and fixative &middot; 2&ndash;3 mL</span>
+          <h3>Glycerin</h3>
+          <p>Glycerol has three &ndash;OH groups, so it holds on to water and to skin moisture. It's thick and barely evaporates, which slows the loss of the scented oil and leaves the skin feeling less dry than ethanol alone.</p>
+          <details><summary>Why only a little?</summary><p>Too much makes the spray sticky and slow to dry. 2 to 3 mL in 50 mL is enough to act as a fixative.</p></details>
+        </div>
+      </article>
+
+      <article class="ing" id="ing-water" data-ing-card="water">
+        <div class="ing-media">
+          <svg class="art on" viewBox="0 0 320 200" role="img" aria-label="Illustration of a water drop and a water molecule"><rect width="320" height="200" fill="#dcf3f6"/><path d="M80 38C80 38 46 86 46 114a34 34 0 0 0 68 0C114 86 80 38 80 38z" fill="#5cc8d7"/><path d="M62 112a18 18 0 0 0 18 18" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".75"/><g><circle cx="220" cy="100" r="22" fill="#e5484d"/><circle cx="186" cy="136" r="13" fill="#fff" stroke="#5a7a80" stroke-width="2"/><circle cx="254" cy="136" r="13" fill="#fff" stroke="#5a7a80" stroke-width="2"/><text x="214" y="107" font-family="JetBrains Mono, monospace" font-size="18" font-weight="600" fill="#fff">O</text></g><text x="168" y="182" font-family="JetBrains Mono, monospace" font-size="14" fill="#1e5a63">H&#8322;O</text></svg>
+          <figcaption>Illustration. A water drop and a water molecule.</figcaption>
+        </div>
+        <div class="ing-body">
+          <span class="chip chip-wat">Diluent &middot; 25 mL</span>
+          <h3>Distilled water</h3>
+          <p>Makes up half the volume and keeps ethanol's sting down. It is distilled because dissolved minerals in tap water can cloud the mixture and give microbes something to feed on.</p>
+          <details><summary>Why add it slowly?</summary><p>Water is the one ingredient the oil doesn't like. Added slowly while stirring, the oil breaks into tiny droplets instead of clumping.</p></details>
+        </div>
+      </article>
+    </div>
+
+    <!-- Apparatus -->
+    <div class="apparatus">
+      <h3>Apparatus</h3>
+      <ul class="app-list">
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h24M14 6v32a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V6M14 20h20" /></svg>Beaker</li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 4h14M19 4v36a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3V4M19 14h6M19 22h6M19 30h6"/></svg>Measuring cylinder</li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 40L36 8"/><circle cx="38" cy="6" r="3"/></svg>Glass rod</li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M20 4a6 6 0 0 1 12 0v10H20zM24 14v22l2 7 2-7V14"/></svg>Dropper or pipette</li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 8h36L28 28v14h-8V28z"/></svg>Funnel</li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 22h16v20a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2zM20 22v-6h8v6M18 16h12l4-4h-8"/></svg>Spray bottle</li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="12" width="32" height="24" rx="3"/><path d="M14 20h20M14 26h14"/></svg>Label</li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="26" width="32" height="14" rx="2"/><path d="M14 26V14h20v12M20 20h8"/></svg>Magnetic stirrer</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>From beaker to spray bottle</h2>
+      <p>Two ways to follow the process. The flowchart shows how the materials move. The lab bench lets you run each step yourself.</p>
+    </div>
+
+    <!-- Interactive block flowchart -->
+    <div class="flow card">
+      <div class="flow-top">
+        <h3>Process flow</h3>
+        <button class="btn btn-small" id="flowPlay" type="button">Play the flow</button>
+      </div>
+      <div class="flow-scroll">
+        <svg id="flowSvg" viewBox="0 0 1120 360" role="group" aria-label="Process flowchart: ethanol and oil to mixer 1, then mixer 2 with glycerin and water, then filtration, then storage tank">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+          </defs>
+          <!-- connectors -->
+          <g class="fl-lines" fill="none" stroke="currentColor" stroke-width="3" marker-end="url(#arr)">
+            <path class="fl-path" id="p-eth" d="M170 150H250"/>
+            <path class="fl-path" id="p-oil" d="M170 250H210Q220 250 220 240V175Q220 170 230 170H250"/>
+            <path class="fl-path" id="p-m1m2" d="M400 160H500"/>
+            <path class="fl-path" id="p-gly" d="M560 70V112"/>
+            <path class="fl-path" id="p-wat" d="M700 70V112" />
+            <path class="fl-path" id="p-m2f" d="M650 160H760"/>
+            <path class="fl-path" id="p-fst" d="M890 160H960"/>
+          </g>
+          <!-- flow dots -->
+          <g id="flowDots"></g>
+
+          <g class="fl-node" tabindex="0" role="button" data-node="ethanol" transform="translate(30 120)"><rect width="140" height="60" rx="14" class="n-eth"/><text x="70" y="36" text-anchor="middle">Ethanol</text></g>
+          <g class="fl-node" tabindex="0" role="button" data-node="oil" transform="translate(30 220)"><rect width="140" height="60" rx="14" class="n-oil"/><text x="70" y="30" text-anchor="middle">Oil</text><text x="70" y="48" text-anchor="middle" class="sm">castor / citronella</text></g>
+          <g class="fl-node" tabindex="0" role="button" data-node="mixer1" transform="translate(250 100)"><rect width="150" height="120" rx="18" class="n-mix"/><circle cx="75" cy="52" r="22" fill="none" stroke="currentColor" stroke-width="3"/><path class="spin" d="M75 36V68M59 52H91" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><text x="75" y="102" text-anchor="middle">Mixer 1</text></g>
+          <g class="fl-node" tabindex="0" role="button" data-node="mixer2" transform="translate(500 100)"><rect width="150" height="120" rx="18" class="n-mix"/><circle cx="75" cy="52" r="22" fill="none" stroke="currentColor" stroke-width="3"/><path class="spin" d="M75 36V68M59 52H91" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><text x="75" y="102" text-anchor="middle">Mixer 2</text></g>
+          <g class="fl-node" tabindex="0" role="button" data-node="glycerin" transform="translate(500 12)"><rect width="120" height="58" rx="14" class="n-gly"/><text x="60" y="35" text-anchor="middle">Glycerin</text></g>
+          <g class="fl-node" tabindex="0" role="button" data-node="water" transform="translate(640 12)"><rect width="120" height="58" rx="14" class="n-wat"/><text x="60" y="30" text-anchor="middle">Distilled</text><text x="60" y="48" text-anchor="middle">water</text></g>
+          <g class="fl-node" tabindex="0" role="button" data-node="filter" transform="translate(760 100)"><rect width="130" height="120" rx="18" class="n-fil"/><path d="M45 36h40L72 62v22l-14 8V62z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" transform="translate(5 0)"/><text x="65" y="108" text-anchor="middle">Filtration</text></g>
+          <g class="fl-node" tabindex="0" role="button" data-node="tank" transform="translate(960 80)"><rect width="130" height="160" rx="20" class="n-tank"/><path d="M20 88Q42 78 65 88T110 88V140a10 10 0 0 1-10 10H30a10 10 0 0 1-10-10z" class="n-tankfill"/><text x="65" y="40" text-anchor="middle">Storage</text><text x="65" y="58" text-anchor="middle">tank</text></g>
+          <text x="1025" y="268" text-anchor="middle" class="fl-cap">Repellent</text>
+        </svg>
+      </div>
+      <div class="flow-info" id="flowInfo" aria-live="polite">
+        <h4>Select any box</h4>
+        <p>Click or press Enter on a box to see what happens there, how much goes in, and which lab steps it covers.</p>
+      </div>
+    </div>
+
+    <!-- Lab bench simulator -->
+    <div class="sim card" id="sim">
+      <div class="sim-head">
+        <h3>Lab bench</h3>
+        <fieldset class="oil-pick">
+          <legend>Oil in the beaker</legend>
+          <label><input type="radio" name="oil" value="castor" checked> Castor oil (our lab)</label>
+          <label><input type="radio" name="oil" value="citronella"> Citronella (reference)</label>
+        </fieldset>
+      </div>
+      <div class="sim-body">
+        <ol class="sim-steps" id="simSteps"></ol>
+        <div class="sim-stage">
+          <div class="sim-svgwrap"><svg id="benchSvg" viewBox="0 0 760 520" role="img" aria-label="Animated lab bench showing the current preparation step"></svg></div>
+          <div class="sim-read">
+            <div class="readout"><span>In beaker</span><b id="simVol">0 mL</b></div>
+            <div class="readout"><span>Step</span><b id="simStepNo">1 / 10</b></div>
+            <div class="readout wide" id="simMini" aria-hidden="true"></div>
+          </div>
+          <div class="sim-text">
+            <h4 id="simTitle"></h4>
+            <p id="simText"></p>
+            <p class="why" id="simWhy"></p>
+            <div class="sim-extra" id="simExtra"></div>
+          </div>
+          <div class="sim-ctrl">
+            <button class="btn btn-small" id="simPrev" type="button">Back</button>
+            <button class="btn btn-small btn-primary" id="simNext" type="button">Next step</button>
+            <button class="btn btn-small" id="simPlay" type="button">Auto-play</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP AND SAFETY -->
+<section class="section dark" id="setup">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Experimental setup and safety</h2>
+      <p>What was on the bench, and what we did to keep a flammable solvent and a stirring motor from becoming a problem.</p>
+    </div>
+
+    <div class="setup-grid">
+      <div class="hs" data-hs>
+        <div class="hs-stage">
+          <img src="assets/img/stirrer.jpg" alt="A beaker with a cloudy mixture on a REMI 2MLH magnetic stirrer reading 640 rpm" loading="lazy">
+          <button class="hs-pin" style="--x:46%;--y:22%" data-title="Beaker with the mixture" data-text="Our batch after the water was added. The milky look is normal: the oil is dispersed as tiny droplets, so the liquid scatters light instead of staying clear." aria-label="Beaker">+</button>
+          <button class="hs-pin" style="--x:44%;--y:44%" data-title="Hot-plate surface" data-text="The REMI 2MLH is a magnetic stirrer with a heating plate. We use it only for stirring: the heater stays off because ethanol vapour is flammable." aria-label="Plate">+</button>
+          <button class="hs-pin" style="--x:37%;--y:84%" data-title="Speed display: 640 rpm" data-text="The red display shows stirring speed in revolutions per minute. 640 rpm gives a steady swirl without splashing, and the speed can be lowered if the liquid climbs the glass." aria-label="RPM display">+</button>
+          <button class="hs-pin" style="--x:21%;--y:81%" data-title="Control knobs" data-text="One knob sets the stirring speed and the other controls the heating plate. Check the markings on your unit, and keep the heating knob at zero for this recipe." aria-label="Knobs">+</button>
+        </div>
+        <div class="hs-panel" aria-live="polite">Tap a pin to see how the stirring station is set up.</div>
+      </div>
+
+      <div class="setup-list">
+        <h3>Our setup</h3>
+        <dl class="setup-dl">
+          <dt>Mixing vessel</dt><dd>A glass beaker, large enough that the 50 mL batch stays below the halfway mark and can swirl without splashing.</dd>
+          <dt>Stirring</dt><dd>Glass rod for the gentle first mixes. A REMI 2MLH magnetic stirrer at about 640 rpm for the long stirring stages.</dd>
+          <dt>Measuring</dt><dd>Measuring cylinder for ethanol and water, dropper for the oil, read at eye level at the bottom of the meniscus.</dd>
+          <dt>Transfer</dt><dd>A funnel (with filter paper if the mixture is turbid) into a clean spray bottle.</dd>
+          <dt>Ventilation</dt><dd>The lab's exhaust fans stay running. Ethanol vapour is heavier than air and collects at bench level.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="safety">
+      <div class="safety-head">
+        <h3>Safety checklist</h3>
+        <div class="meter" aria-live="polite"><div class="meter-bar"><span id="safetyBar"></span></div><b id="safetyCount">0 / 8</b></div>
+      </div>
+      <ul class="checks" id="safetyList"></ul>
+      <p class="safety-done" id="safetyDone" hidden>All eight checked. You're ready to start the lab bench above.</p>
+    </div>
+
+    <div class="decision card-dark">
+      <h3>Before you spray: a quick check</h3>
+      <div id="decision" class="decision-box" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLAINER VIDEO -->
+<section class="section" id="explainer">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How to prepare it: explainer</h2>
+      <p>A two-and-a-half-minute motion-graphics walkthrough of the full procedure, drawn live in your browser. Click a chapter to jump to it.</p>
+    </div>
+    <div class="player" id="player">
+      <div class="player-screen">
+        <canvas id="exCanvas" width="1280" height="720" aria-label="Animated explainer video of the preparation procedure"></canvas>
+        <button class="player-big" id="exBig" type="button" aria-label="Play explainer"><svg viewBox="0 0 24 24" width="38" height="38"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
+      </div>
+      <div class="player-bar">
+        <button class="pbtn" id="exPlay" type="button" aria-label="Play or pause"><svg viewBox="0 0 24 24" width="20" height="20"><path id="exPlayIcon" d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
+        <span class="ptime" id="exTime">0:00 / 2:25</span>
+        <div class="pscrub" id="exScrub" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="145" aria-valuenow="0">
+          <div class="pscrub-chapters" id="exChapters"></div>
+          <div class="pscrub-fill" id="exFill"></div>
+        </div>
+        <select class="pspeed" id="exSpeed" aria-label="Playback speed"><option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.5">1.5x</option></select>
+        <button class="pbtn pbtn-txt" id="exVoice" type="button" aria-pressed="false">Read aloud</button>
+        <button class="pbtn pbtn-txt" id="exRec" type="button">Save as video</button>
+        <button class="pbtn" id="exFull" type="button" aria-label="Full screen"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      </div>
+      <p class="player-note" id="exNote">Tip: <b>Save as video</b> records the animation in real time and downloads a WebM file you can drop into your presentation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTAGE (dynamic: edit js/config.js) -->
+<section class="section tint" id="footage">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Our lab footage</h2>
+      <p>Our own recordings of the batch being made. Final edits are on the way.</p>
+    </div>
+    <div class="footage-grid" id="footageGrid"></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section" id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Team</h2>
+      <p>Four of us, one bench, one beaker.</p>
+    </div>
+    <ul class="team">
+      <li class="member"><div class="avatar"><img src="assets/img/member-chirag.jpg" alt="Portrait of Chirag Sahuji" style="object-position:50% 18%" loading="lazy"></div><h3>Chirag Sahuji</h3><p class="prn"><span>PRN</span>202501100227</p></li>
+      <li class="member"><div class="avatar"><img src="assets/img/member-tejas-deore.jpg" alt="Portrait of Tejas Deore" loading="lazy"></div><h3>Tejas Deore</h3><p class="prn"><span>PRN</span>202501100230</p></li>
+      <li class="member"><div class="avatar"><img src="assets/img/member-tejas-nagpure.jpg" alt="Portrait of Tejas Nagpure" loading="lazy"></div><h3>Tejas Nagpure</h3><p class="prn"><span>PRN</span>202501100226</p></li>
+      <li class="member"><div class="avatar"><img src="assets/img/member-chetan.jpg" alt="Portrait of Chetan Lokhande" style="object-position:50% 25%" loading="lazy"></div><h3>Chetan Lokhande</h3><p class="prn"><span>PRN</span>202501100119</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ACKNOWLEDGEMENT -->
+<section class="section thanks" id="thanks">
+  <div class="wrap narrow">
+    <h2>Acknowledgement</h2>
+    <p class="thanks-main">We extend our sincere gratitude to our faculty advisor and the Department of Computer Engineering for their invaluable guidance, resources, and support throughout this project.</p>
+    <h3>Laboratory support</h3>
+    <p>Special thanks to the laboratory staff for providing equipment, chemicals, and technical assistance that made this research possible.</p>
+    <dl class="colophon">
+      <div><dt>Subject</dt><dd>Chemical Prototyping</dd></div>
+      <div><dt>Department</dt><dd>Software Engineering</dd></div>
+      <div><dt>Academic Year</dt><dd>2026-27</dd></div>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p>Herbal mosquito repellent &ndash; Chemical Prototyping, 2026&ndash;27. Plant photographs from Wikimedia Commons (see each file page for its licence); molecule and bottle drawings are original illustrations. Group, bench, apparatus and portrait photos are our own.</p>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/explainer.js"></script>
+</body>
+</html>
